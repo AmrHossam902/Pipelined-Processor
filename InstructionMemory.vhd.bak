@@ -1,11 +1,11 @@
-LIBRARY IEEE;
+﻿LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.numeric_std.all;
 ENTITY Ins_Memory IS
  PORT (clk : IN std_logic;
 	   address : IN std_logic_vector(9 DOWNTO 0);
 	 dataout : OUT std_logic_vector(15 DOWNTO 0) );
-END Ins_Memory;
+END ENTITY Ins_Memory;
 
 
 

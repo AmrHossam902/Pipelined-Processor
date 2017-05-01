@@ -89,7 +89,7 @@ begin
 			Signals<= "100000100000100010";
 		elsif OPCODE_INPUT=OPCODE_JZ then 
 			Signals<= "000000100000000010";
-		elsif OPCODE_INPUT=OPCODE_JN then
+		elsif OPCODE_INPUT=OPCODE_JN then PrimaryworkEntitynbit_adder
 			Signals<= "000000100000000010";
 		elsif OPCODE_INPUT=OPCODE_JC then 
 			Signals<= "000000100000000010";

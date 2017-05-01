@@ -1,1 +1,100 @@
+{D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/ALU.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/ALU.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity ALU
+-- Compiling architecture ALU_ARC of ALU
 
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/registerfile.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/registerfile.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity registerfile
+-- Compiling architecture registerfile_ARC of registerfile
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/bit_adder.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/bit_adder.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity bit_adder
+-- Compiling architecture bit_adder_ARC of bit_adder
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_Register.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_Register.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity nbit_Register
+-- Compiling architecture nbit_Register_ARC of nbit_Register
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/decoder3x8.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/decoder3x8.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity decoder3x8
+-- Compiling architecture Behavioral of decoder3x8
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/InstructionMemory.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/InstructionMemory.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity Ins_Memory
+-- Compiling architecture Ins_Memory_ARC of Ins_Memory
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/mux8x1.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/mux8x1.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity mux8x1
+-- Compiling architecture multiplexer8_1_arc of mux8x1
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/DataMemory.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/DataMemory.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity DataMemory
+-- Compiling architecture DataMemory_ARC of DataMemory
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/CPU.vhdl} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/CPU.vhdl}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity CPU
+-- Compiling architecture CPU_ARC of CPU
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_adder.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_adder.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity nbit_adder
+-- Compiling architecture nbit_adder_ARC of nbit_adder
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/FSM.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/FSM.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity FSM
+-- Compiling architecture FSM_ARC of FSM
+
+} {} {}} {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/Control_unit.vhd} {1 {vcom -work work -2002 -explicit {D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/Control_unit.vhd}
+Model Technology ModelSim ALTERA vcom 10.1b Compiler 2012.04 Apr 27 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity CU
+-- Compiling architecture CU_ARC of CU
+
+} {} {}}

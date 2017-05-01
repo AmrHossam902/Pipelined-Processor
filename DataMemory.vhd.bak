@@ -29,6 +29,6 @@ END PROCESS;
         dataout <= ram(to_integer(unsigned((address)))) when Read_en = '1'
 		else x"0000";
 		
-		mem_of_0 <= ram(0);
-		mem_of_1 <= ram(1);
+		mem_of_0 <= ram(to_integer("0000000000"));
+		mem_of_1 <= ram(to_integer("0000000001"));
 END DataMemory_ARC;

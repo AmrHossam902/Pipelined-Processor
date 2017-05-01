@@ -3,3 +3,429 @@ K3
 13
 cModel Technology
 dC:\altera\12.1\modelsim_ase
+Ealu
+Z0 w1493505215
+Z1 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z2 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z3 dD:\3rd year 2nd term\Computer Architecture\Project\Pipelined-Processor
+Z4 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/ALU.vhd
+Z5 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/ALU.vhd
+l0
+L5
+VIhSjVDR[fBoN`FZX6JmG_3
+Z6 OV;C;10.1b;51
+32
+Z7 !s108 1493567851.541000
+Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/ALU.vhd|
+Z9 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/ALU.vhd|
+Z10 o-work work -2002 -explicit -O0
+Z11 tExplicit 1
+!s100 i6YoecVAJa9^AmUHHkUlz1
+!i10b 1
+Aalu_arc
+R1
+R2
+DEx4 work 3 alu 0 22 IhSjVDR[fBoN`FZX6JmG_3
+l70
+L25
+VAgReY=NbAB[1Qg9I_Vk=;1
+R6
+32
+R7
+R8
+R9
+R10
+R11
+!s100 ;bQi<?0R@N7:?_FX2V6Ec3
+!i10b 1
+Ebit_adder
+Z12 w1493346404
+R1
+R2
+R3
+Z13 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/bit_adder.vhd
+Z14 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/bit_adder.vhd
+l0
+L4
+VXgN`Z4PcTHnMU3lFdn9c_2
+R6
+32
+Z15 !s108 1493567851.997000
+Z16 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/bit_adder.vhd|
+Z17 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/bit_adder.vhd|
+R10
+R11
+!s100 lIV0Cm[12@:k@Ti]Hhg1o3
+!i10b 1
+Abit_adder_arc
+R1
+R2
+DEx4 work 9 bit_adder 0 22 XgN`Z4PcTHnMU3lFdn9c_2
+l10
+L9
+VR0kYY6TC0?6P<8Mh@cJY30
+R6
+32
+R15
+R16
+R17
+R10
+R11
+!s100 MT4^WQhTQNXOISoO<eoH[3
+!i10b 1
+Ecpu
+Z18 w1493678669
+R1
+R2
+R3
+Z19 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/CPU.vhdl
+Z20 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/CPU.vhdl
+l0
+L4
+V?018>N>Xz^<nIYKD:<el_1
+!s100 inWLNI_go0KRPc>8k>_BJ0
+R6
+32
+!i10b 1
+Z21 !s108 1493678698.886000
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/CPU.vhdl|
+Z23 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/CPU.vhdl|
+R10
+R11
+Acpu_arc
+R1
+R2
+Z24 DEx4 work 3 cpu 0 22 ?018>N>Xz^<nIYKD:<el_1
+l171
+L10
+Vb?3f[RS0^zU>Zna<XE;O22
+!s100 `zIR8UTVXm_C_56Ta]MI@3
+R6
+32
+!i10b 1
+R21
+R22
+R23
+R10
+R11
+Ecu
+Z25 w1493665289
+Z26 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+R1
+R2
+R3
+Z27 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/Control_unit.vhd
+Z28 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/Control_unit.vhd
+l0
+L7
+V68fMP>7`A;omQH?EV4MTe1
+R6
+32
+Z29 !s108 1493665293.041000
+Z30 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/Control_unit.vhd|
+Z31 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/Control_unit.vhd|
+R10
+R11
+!s100 XB2X87mG@HkEz]Iob53U<2
+!i10b 1
+Acu_arc
+R26
+R1
+R2
+DEx4 work 2 cu 0 22 68fMP>7`A;omQH?EV4MTe1
+l47
+L13
+V>984_k`:NE4gjmU??^53K1
+R6
+32
+R29
+R30
+R31
+R10
+R11
+!s100 =;21GVU6i6]@3mCN89?8_3
+!i10b 1
+Edatamemory
+Z32 w1493660298
+R26
+R1
+R2
+R3
+Z33 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/DataMemory.vhd
+Z34 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/DataMemory.vhd
+l0
+L4
+VS_dh0D[SKePbIQHoEmjCd2
+R6
+32
+Z35 !s108 1493660301.511000
+Z36 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/DataMemory.vhd|
+Z37 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/DataMemory.vhd|
+R10
+R11
+!s100 1zoXklV4I>Cb0>WNjbCFS0
+!i10b 1
+Adatamemory_arc
+R26
+R1
+R2
+DEx4 work 10 datamemory 0 22 S_dh0D[SKePbIQHoEmjCd2
+l18
+L15
+VJgOl`<AQkzXMaHMoYC;c?3
+R6
+32
+R35
+R36
+R37
+R10
+R11
+!s100 FGz>56bGE^LZIbT]W7ood0
+!i10b 1
+Edecoder3x8
+Z38 w1493554486
+R1
+R2
+R3
+Z39 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/decoder3x8.vhd
+Z40 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/decoder3x8.vhd
+l0
+L5
+V:5N^eBd0hffFLMib5`J1Q0
+R6
+32
+Z41 !s108 1493567852.831000
+Z42 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/decoder3x8.vhd|
+Z43 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/decoder3x8.vhd|
+R10
+R11
+!s100 zzHK;MFZ?RPKfL`LC1hcV2
+!i10b 1
+Abehavioral
+R1
+R2
+DEx4 work 10 decoder3x8 0 22 :5N^eBd0hffFLMib5`J1Q0
+l13
+L12
+VdNXd4h3@M9fMZcNM0S3@70
+R6
+32
+R41
+R42
+R43
+R10
+R11
+!s100 0JD[Q@5KT=@a@d;3TOnQY0
+!i10b 1
+Efsm
+Z44 w1493577742
+R1
+R2
+R3
+Z45 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/FSM.vhd
+Z46 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/FSM.vhd
+l0
+L4
+V7ZB[M9ehMb>F54h]_FO@G1
+R6
+32
+Z47 !s108 1493577779.615000
+Z48 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/FSM.vhd|
+Z49 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/FSM.vhd|
+R10
+R11
+!s100 bT2G[57;4NeA=^LElR>JS0
+!i10b 1
+Afsm_arc
+R1
+R2
+DEx4 work 3 fsm 0 22 7ZB[M9ehMb>F54h]_FO@G1
+l32
+L10
+VgJa8bifDEI?RCez]O?E>L1
+R6
+32
+R47
+R48
+R49
+R10
+R11
+!s100 XP65b29aNbHJ@@m1>KSQR1
+!i10b 1
+Eins_memory
+Z50 w1493584468
+R26
+R1
+R2
+R3
+Z51 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/InstructionMemory.vhd
+Z52 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/InstructionMemory.vhd
+l0
+L4
+VQ<oDoYlDV8Ka@M3@Rg:lU0
+R6
+32
+Z53 !s108 1493660309.055000
+Z54 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/InstructionMemory.vhd|
+Z55 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/InstructionMemory.vhd|
+R10
+R11
+!s100 29k0oNoU8[O1FM1Yl`e>d3
+!i10b 1
+Ains_memory_arc
+R26
+R1
+R2
+DEx4 work 10 ins_memory 0 22 Q<oDoYlDV8Ka@M3@Rg:lU0
+l15
+L12
+VE5i4>A<Clo?8_66M0UCeF1
+R6
+32
+R53
+R54
+R55
+R10
+R11
+!s100 ?1=2=n@z`d]4KiLM[>IJj1
+!i10b 1
+Emux8x1
+Z56 w1493567111
+R1
+R2
+R3
+Z57 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/mux8x1.vhd
+Z58 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/mux8x1.vhd
+l0
+L4
+VaiAdDkF>]AL8e>gaW>L1g3
+R6
+32
+Z59 !s108 1493567853.432000
+Z60 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/mux8x1.vhd|
+Z61 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/mux8x1.vhd|
+R10
+R11
+!s100 6^0_kADGcYRQTXkWYFM<O0
+!i10b 1
+Amultiplexer8_1_arc
+R1
+R2
+DEx4 work 6 mux8x1 0 22 aiAdDkF>]AL8e>gaW>L1g3
+l13
+L12
+V`bGn_An3>n<d>F7dB3CkG0
+R6
+32
+R59
+R60
+R61
+R10
+R11
+!s100 @VZd;9ZUAhRe3IW:E20KP1
+!i10b 1
+Enbit_adder
+Z62 w1493401296
+R1
+R2
+R3
+Z63 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_adder.vhd
+Z64 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_adder.vhd
+l0
+L4
+V;We5g`g`2z1[c:Yd0hUb71
+R6
+32
+Z65 !s108 1493567853.671000
+Z66 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_adder.vhd|
+Z67 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_adder.vhd|
+R10
+R11
+!s100 DLH:FV7Q6;H5LL]E4fBKG3
+!i10b 1
+Anbit_adder_arc
+R1
+R2
+DEx4 work 10 nbit_adder 0 22 ;We5g`g`2z1[c:Yd0hUb71
+l21
+L14
+Ven=95X;5`8bO<Skobf3<>2
+R6
+32
+R65
+R66
+R67
+R10
+R11
+!s100 jAOm]00J2P0NgX4hZm3F93
+!i10b 1
+Enbit_register
+Z68 w1493555021
+R1
+R2
+R3
+Z69 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_Register.vhd
+Z70 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_Register.vhd
+l0
+L4
+VbMjeC[g[V35[U^950A>XI1
+R6
+32
+Z71 !s108 1493567854.116000
+Z72 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_Register.vhd|
+Z73 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/nbit_Register.vhd|
+R10
+R11
+!s100 NF4aVkbkl<HccH=e38TkW0
+!i10b 1
+Anbit_register_arc
+R1
+R2
+DEx4 work 13 nbit_register 0 22 bMjeC[g[V35[U^950A>XI1
+l12
+L11
+V03D?23kS6i0OzPDQBWLgN1
+R6
+32
+R71
+R72
+R73
+R10
+R11
+!s100 ;OYgXMbfkCPENG5DnoLkm1
+!i10b 1
+Eregisterfile
+Z74 w1493677171
+R1
+R2
+R3
+Z75 8D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/registerfile.vhd
+Z76 FD:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/registerfile.vhd
+l0
+L4
+Vhd;;29M0Y]0EW8gA3on3i1
+R6
+32
+Z77 !s108 1493677221.798000
+Z78 !s90 -reportprogress|300|-work|work|-2002|-explicit|D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/registerfile.vhd|
+Z79 !s107 D:/3rd year 2nd term/Computer Architecture/Project/Pipelined-Processor/registerfile.vhd|
+R10
+R11
+!s100 5zaUH2:d==@WJoj7Y5Ek^0
+!i10b 1
+Aregisterfile_arc
+R1
+R2
+DEx4 work 12 registerfile 0 22 hd;;29M0Y]0EW8gA3on3i1
+l58
+L13
+VViHkIHP5KNLn><Yna]L5H2
+R6
+32
+R77
+R78
+R79
+R10
+R11
+!s100 LK<O7WaL8?178?]b=ULQK3
+!i10b 1
