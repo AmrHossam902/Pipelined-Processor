@@ -18,10 +18,12 @@ namespace Assembler
         static void Main(string[] args)
         {
             Init();
-            var filelines = File.ReadAllLines(Path + "Testcase1_Code.txt")
+            var filelines = File.ReadAllLines("test.txt")
                                 .Where(arg => !string.IsNullOrWhiteSpace(arg)).ToArray();
             var outList = AssembleFile(filelines);
-            File.WriteAllLines(Path + "out.mem", outList);
+            File.WriteAllLines("out.mem", outList);
+            Console.WriteLine("File Assembled!");
+            Console.ReadKey();
         }
 
         private static List<string> AssembleFile(string[] filelines)
