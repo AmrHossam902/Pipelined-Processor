@@ -6,8 +6,7 @@ ENTITY DataMemory IS
        write_en, Read_en, rst : IN std_logic;
 	   address : IN std_logic_vector(9 DOWNTO 0);
 	 datain   : IN std_logic_vector(15 DOWNTO 0);
-	 dataout : OUT std_logic_vector(15 DOWNTO 0);
-	 mem_of_0, mem_of_1: out std_logic_vector(15 downto 0));
+	 dataout : OUT std_logic_vector(15 DOWNTO 0));
 END DataMemory;
 
 
@@ -29,6 +28,4 @@ END PROCESS;
         dataout <= ram(to_integer(unsigned((address)))) when Read_en = '1'
 		else x"0000";
 		
-		mem_of_0 <= ram(0);
-		mem_of_1 <= ram(1);
 END DataMemory_ARC;

@@ -33,7 +33,8 @@ Architecture CPU_ARC of CPU is
 	component Ins_Memory IS
 	PORT (clk : IN std_logic;
 	   address : IN std_logic_vector(9 DOWNTO 0);
-	   dataout : OUT std_logic_vector(15 DOWNTO 0) );
+	   dataout : OUT std_logic_vector(15 DOWNTO 0);
+	   mem_of_0, mem_of_1: out std_logic_vector(15 downto 0));
 	END component;
 	
 	
@@ -43,8 +44,7 @@ Architecture CPU_ARC of CPU is
        write_en, Read_en, rst : IN std_logic;
 	   address : IN std_logic_vector(9 DOWNTO 0);
 	   datain   : IN std_logic_vector(15 DOWNTO 0);
-	   dataout : OUT std_logic_vector(15 DOWNTO 0);
-	   mem_of_0, mem_of_1: out std_logic_vector(15 downto 0));
+	   dataout : OUT std_logic_vector(15 DOWNTO 0));
 	END component;
 
 
@@ -82,9 +82,9 @@ Architecture CPU_ARC of CPU is
 	
 ----------------------------------------------------------signals------------------------------------------------------
 -- 1- Fetch Stage------------------------------------------------------------------------------------
-signal instruction, mux3_value: std_logic_vector(15 downto 0);
+signal instruction, mux3_value, mem_of_0, mem_of_1: std_logic_vector(15 downto 0);
 signal pc_value, pc_plus_one, mux1_value: std_logic_vector(9 downto 0);
-signal pc_cry, pc_oflw ,int, dft_bar, rst_from_fsm, pc_enable: std_logic;  -- malhomsh lazma
+signal pc_cry, pc_oflw ,int, dft_bar, rst_from_fsm, pc_enable: std_logic; 
 
 
 -- 2- Decode stage----------------------------------------------------------------------------------
@@ -130,7 +130,7 @@ signal mem_mux12_value: std_logic_vector(9 downto 0);
 signal mem_dst_num: std_logic_vector(2 downto 0);
 
 --signals not belonging to the buffer
-signal data_mem_out, mux15_value, mem_of_0, mem_of_1: std_logic_vector(15 downto 0);
+signal data_mem_out, mux15_value: std_logic_vector(15 downto 0);
 
 -- 5- Write back stage----------------------------------------------------------------------------
 -- buffer signals
@@ -176,7 +176,7 @@ begin
 PC: nbit_Register generic map(10) port map(clk, rst, pc_enable, mux1_value,  mem_of_0(9 downto 0), pc_value);
 p1: nbit_adder generic map(10) port map(pc_value, "0000000000", '1', pc_plus_one, pc_cry, pc_oflw); 
 F_S_M: FSM port map(interrupt, clk, rst, int, rst_from_fsm, dft_bar);
-Imem: Ins_Memory port map(clk, pc_value, Instruction);
+Imem: Ins_Memory port map(clk, pc_value, Instruction, mem_of_0, mem_of_1);
 
 
 mux1_value <= mux16_value when J = '1' and int = '0'
@@ -202,7 +202,7 @@ M6: mux6_value <=   "000000"&dec_PC            	when mux6_s = "00"
 	else 			"000000000000"&dec_shamt	when mux6_s = "01"
 	else			instruction					when mux6_s = "10";
 
-sp_enable <= sp_enable_cu and (not(B or C));	
+sp_enable <= sp_enable_cu and (not( J or C));	
 
 reg_write <= CU_signals(17);
 mem_read <= CU_signals(16);
@@ -270,7 +270,7 @@ Flag_save: nbit_Register generic map(4) port map(clk, rst, flag_save_enable, fla
 -------------------------------------------------------MEmory stage-------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
 	
-DM: DataMemory port map(clk,mem_mem_write ,mem_mem_read, rst, mem_mux12_value, mem_mux10_value, data_mem_out, mem_of_0, mem_of_1);
+DM: DataMemory port map(clk,mem_mem_write ,mem_mem_read, rst, mem_mux12_value, mem_mux10_value, data_mem_out);
 M15: mux15_value <= data_mem_out when mux15_s0 = '1'
 	else			mem_mux11_value;
 	
@@ -352,11 +352,9 @@ wb_mux15_value <= mw_buffer_value(15 downto 0);
 fd_buffer_rst <= '1' when J = '1' or rst = '1' or rst_from_fsm = '1' or dec_opcode = LDD_CODE or dec_opcode = LDM_CODE or dec_opcode = STD_CODE
 	else 		 '0';
 
-de_buffer_rst <= '1' when J = '1' or rst = '1'
-	else		 '0';
+de_buffer_rst <= J or rst;
 
-em_buffer_rst <= '1' when mem_c = '1' or rst = '1'
-	else		 '0';
+em_buffer_rst <= mem_c or rst;
 
 mw_buffer_rst <= rst;	
 

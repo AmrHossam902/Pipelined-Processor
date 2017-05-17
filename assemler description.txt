@@ -1,0 +1,123 @@
+Instruction length is either 16 bits or 32 bits based on the following formats:
+
+
+instruction format : opcode + dst + src1 + src2 + 00
+		    +(            Imm              )
+		
+		or : opcode + dst + src1 + src2 + 00
+		    + 000000 + (        EA         )  // stands for effective address
+
+		or : opcode + dst + src1 + shamt + 0  // shamt: shift amount
+
+
+
+opcode: 5  bits
+dst   : 3  bits
+src1  : 3  bits
+src2  : 3  bits
+shamt : 4  bits
+Imm   : 16 bits  
+EA    : 10 bits
+
+
+
+
+
+src1, src2, dst: number from 0 to 7 , and written in source code as R0, R1, R2, R3, R4, R5, R6, R7, sp, pc
+shamt : written in source code as a numerical value from 0 to 15
+Imm: written in source code as a numerical value from 0 to 65535
+EA: written in source code as a numerical value from 0 to 1023
+
+
+
+replace register variables with the following codes
+
+R0: 000
+R1: 001
+R2: 010
+R3: 011
+R4: 100
+R5: 101
+R6: 110=sp: 110
+R7: 111=pc: 111
+
+
+Nop =  00000 + 000 + 000  +  000  + 00       ===> nop
+
+Mov =  00001 + dst + src1 +  000  + 00       ===> mov dst, src1
+
+ADD =  00100 + dst + src1 + src2  + 00       ===> mov dst, src1, src2
+
+SUB =  00101 + dst + src1 + src2  + 00	     ===> sub dst, src1, src2
+
+AND =  00110 + dst + src1 + src2  + 00       ===> sub dst, src1, src2
+
+OR  =  00111 + dst + src1 + src2  + 00       ===> sub dst, src1, src2
+
+RLC =  00010 + src1+ src1 +  000  + 00       ===> rlc src1 
+
+RRC =  00011 + src1+ src1 +  000  + 00       ===> rrc src1 
+
+SHL =  01000 + src1+ src1 + shamt +  0       ===> shl src1, shamt
+
+SHR =  01001 + src1+ src1 + shamt +  0       ===> shr src1, shamt
+
+SETC=  01010 + 000 + 000  +  000  + 00       ===> setc
+
+CLRC=  01011 + 000 + 000  +  000  + 00       ===> clrc
+
+PUSH=  01100 + 000 + src1 +  110  + 00       ===> push src1
+
+POP =  01101 + dst + 000  +  110  + 00       ===> pop dst
+
+OUT =  01110 + 000 + src1 +  000  + 00       ===> out src1
+
+IN  =  01111 + dst + 000  +  000  + 00       ===> In dst
+
+NOT =  10000 + src1+ src1 +  000  + 00       ===> Not src1 
+
+NEG =  10001 + src1+ src1 +  000  + 00       ===> neg src1
+
+INC =  10010 + src1+ src1 +  000  + 00       ===> inc src1
+
+DEC =  10011 + src1+ src1 +  000  + 00       ===> dec src1
+
+JZ  =  10100 + 000 + src1 +  000  + 00       ===> jz src1
+
+JN  =  10101 + 000 + src1 +  000  + 00       ===> jn src1
+
+JC  =  10110 + 000 + src1 +  000  + 00       ===> jc src1
+
+JMP =  10111 + 000 + src1 +  000  + 00       ===> jmp src1
+
+CALL=  11000 + 000 + src1 +  110  + 00       ===> call src1
+
+RET =  11001 + 000 + 000  +  110  + 00       ===> ret
+
+RTI =  11010 + 000 + 000  +  110  + 00       ===> rti
+
+LDM =  11011 + dst + 000  +  000  + 00       ===> LDM dst, Imm
+      + Imm
+
+LDD =  11100 + dst + 000  +  000  + 00       ===> LDD dst, EA
+      + 000000 +Eff Address
+
+STD =  11101 + 000 + src1 +  000  + 00       ===> std src, EA
+      + 000000 +Eff Address
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
