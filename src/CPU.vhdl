@@ -33,18 +33,18 @@ Architecture CPU_ARC of CPU is
 	component Ins_Memory IS
 	PORT (clk : IN std_logic;
 	   address : IN std_logic_vector(9 DOWNTO 0);
-	   dataout : OUT std_logic_vector(15 DOWNTO 0);
-	   mem_of_0, mem_of_1: out std_logic_vector(15 downto 0));
+	   dataout : OUT std_logic_vector(15 DOWNTO 0));
 	END component;
 	
 	
 --Data memory
 	component DataMemory IS
 	PORT (clk : IN std_logic;
-       write_en, Read_en, rst : IN std_logic;
+       write_en, Read_en, rst: IN std_logic;
 	   address : IN std_logic_vector(9 DOWNTO 0);
 	   datain   : IN std_logic_vector(15 DOWNTO 0);
-	   dataout : OUT std_logic_vector(15 DOWNTO 0));
+	   dataout : OUT std_logic_vector(15 DOWNTO 0);
+	   mem_of_0, mem_of_1: out std_logic_vector(15 downto 0));
 	END component;
 
 
@@ -78,13 +78,31 @@ Architecture CPU_ARC of CPU is
             add_out : OUT std_logic_vector(n-1 DOWNTO 0);    
               cout,overflow : OUT std_logic);
 	END component;
+
+
+-- Forwarding unit
+	component DataForwarding is
+		port(src1_exist, src2_exist ,exe_reg_write, mem_reg_write:in  std_logic;
+		exe_src1_num,exe_src2_num,exe_dst_num,mem_dst_num:in  std_logic_vector(2 downto 0);
+		ALU1,ALU2:out std_logic_vector(1 downto 0));
+	end component;
+
+-- Hazard detection unit
+	component HDU IS
+		PORT( 
+			  OPCODE: IN std_logic_vector(4 downto 0);
+			  SRC1_EXISTS,SRC2_EXISTS: in std_logic;
+			  DEC_EXE_DST, FET_DEC_SRC1, FET_DEC_SRC2: IN std_logic_vector(2 downto 0);
+			  DISABLE_PC: out std_logic);
+	END component;
+
 	
 	
 ----------------------------------------------------------signals------------------------------------------------------
 -- 1- Fetch Stage------------------------------------------------------------------------------------
-signal instruction, mux3_value, mem_of_0, mem_of_1: std_logic_vector(15 downto 0);
+signal instruction, mux3_value: std_logic_vector(15 downto 0);
 signal pc_value, pc_plus_one, mux1_value: std_logic_vector(9 downto 0);
-signal pc_cry, pc_oflw ,int, dft_bar, rst_from_fsm, pc_enable: std_logic; 
+signal pc_cry, pc_oflw ,int, dft_bar, rst_from_fsm, pc_disable1, pc_disable2, pc_enable: std_logic; 
 
 
 -- 2- Decode stage----------------------------------------------------------------------------------
@@ -115,17 +133,17 @@ signal exe_mux9_s0, exe_mux12_s0, exe_mux15_s0: std_logic;
 signal exe_mux10_s, exe_mux11_s: std_logic_vector(1 downto 0);
 
 --signals not belonging to the buffer
-signal mux9_value, mux10_value, mux11_value, alu_out: std_logic_vector(15 downto 0);
+signal mux9_value, mux10_value, mux11_value, alu_out, inport_value, mux7_value, mux8_value: std_logic_vector(15 downto 0);
 signal mux12_value: std_logic_vector(9 downto 0);
 signal alu_flags_out, flags_reg_value, flags_save_value , mux14_value: std_logic_vector(3 downto 0);
-signal flag_save_enable, B, C, flags_enable, ret: std_logic;
-
+signal flag_save_enable, B, C, flags_enable, ret, out_enable : std_logic;
+signal alu1_s, alu2_s : std_logic_vector(1 downto 0);
 
 
 -- 4- Memory stage-----------------------------------------------------------------------------
 -- buffer signals
 signal mem_c, mem_ret ,mem_mem_read, mem_mem_write, mem_reg_write: std_logic;
-signal mem_mux10_value, mem_mux11_value: std_logic_vector(15 downto 0);
+signal mem_mux10_value, mem_mux11_value, mem_of_0, mem_of_1: std_logic_vector(15 downto 0);
 signal mem_mux12_value: std_logic_vector(9 downto 0);
 signal mem_dst_num: std_logic_vector(2 downto 0);
 
@@ -150,7 +168,7 @@ signal J, fd_buffer_rst, de_buffer_rst, em_buffer_rst, mw_buffer_rst: std_logic;
 signal mux16_value: std_logic_vector(9 downto 0);
 signal fd_buffer_input, fd_buffer_value: std_logic_vector(25 downto 0);
 signal de_buffer_input, de_buffer_value: std_logic_vector(74 downto 0);
-signal em_buffer_input, em_buffer_value: std_logic_vector(51 downto 0);
+signal em_buffer_input, em_buffer_value: std_logic_vector(52 downto 0);
 signal mw_buffer_input, mw_buffer_value: std_logic_vector(19 downto 0);
 
 
@@ -166,6 +184,8 @@ constant JMP_CODE : std_logic_vector(4 downto 0) := "10111";
 constant LDM_CODE : std_logic_vector(4 downto 0) :=  "11011";   
 constant LDD_CODE : std_logic_vector(4 downto 0) :=  "11100";	 
 constant STD_CODE : std_logic_vector(4 downto 0) :=  "11101";	 
+constant OUT_CODE : std_logic_vector(4 downto 0) :=  "01110";	 
+constant IN_CODE  : std_logic_vector(4 downto 0) :=  "01111";	
 
 
 begin
@@ -176,20 +196,25 @@ begin
 PC: nbit_Register generic map(10) port map(clk, rst, pc_enable, mux1_value,  mem_of_0(9 downto 0), pc_value);
 p1: nbit_adder generic map(10) port map(pc_value, "0000000000", '1', pc_plus_one, pc_cry, pc_oflw); 
 F_S_M: FSM port map(interrupt, clk, rst, int, rst_from_fsm, dft_bar);
-Imem: Ins_Memory port map(clk, pc_value, Instruction, mem_of_0, mem_of_1);
+Imem: Ins_Memory port map(clk, pc_value, Instruction);
 
 
 mux1_value <= mux16_value when J = '1' and int = '0'
 	else	mem_of_1(9 downto 0) when dft_bar = '1' and int = '1' and J= '0'
 	else	pc_plus_one;
+
+pc_disable1 <= '1' when (dft_bar = '1' and J = '0' and int = '0') or (dft_bar = '0' and J = '0' and interrupt = '1' and  not(dec_opcode = LDM_CODE or dec_opcode = LDD_CODE or dec_opcode = STD_CODE))
+	else '0';
 	
-pc_enable <= '0' when (dft_bar = '1' and J = '0' and int = '0') or (dft_bar = '0' and interrupt = '1')
-	else '1';
 	
 mux3_value <= Instruction when int = '0'
 	else	"1111100000011000";  -- int format
-	
 
+pc_enable <= (not pc_disable1) and (not pc_disable2);	
+
+HDU1: HDU port map(exe_opcode, src1_exist, src2_exist, exe_dst_num, dec_src1_num, dec_src2_num, pc_disable2);	
+ForU1: DataForwarding port map(exe_src1_exist, exe_src2_exist, mem_reg_write, wb_reg_write, exe_src1_num, exe_src2_num, mem_dst_num, wb_dst_num, alu1_s, alu2_s);	
+	
 ----------------------------------------------------------------------------------------------------------------------------
 -------------------------------------------------------Decoding stage-------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
@@ -225,19 +250,19 @@ src2_exist <= CU_signals(0);
 -------------------------------------------------------Execution stage------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
 
-AU: ALU port map(exe_opcode, exe_src1_value, exe_src2_value, alu_flags_out, flags_reg_value, alu_out); 
+AU: ALU port map(exe_opcode, mux7_value, mux9_value, alu_flags_out, flags_reg_value, alu_out); 
 
-mux9_value <=	exe_src2_value				when exe_mux9_s0 = '0'
+mux9_value <=	mux8_value				when exe_mux9_s0 = '0'
 	else			exe_pc_imm_EA;
 	
-M10:mux10_value<=	exe_src1_value				when exe_mux10_s = "00"
+M10:mux10_value<=	mux7_value   				when exe_mux10_s = "00"
 	else			exe_pc_imm_EA				when exe_mux10_s = "01"
 	else			alu_out						when exe_mux10_s = "10";
 	
-M11:mux11_value<=	exe_src1_value				when exe_mux11_s = "00"
+M11:mux11_value<=	mux7_value   				when exe_mux11_s = "00"
 	else			exe_pc_imm_EA				when exe_mux11_s = "01"
 	else			alu_out  					when exe_mux11_s = "10"
-	else			in_port						when exe_mux11_s = "11";
+	else			inport_value				when exe_mux11_s = "11";
 
 M12:mux12_value<=	exe_src2_value(9 downto 0)	when exe_mux12_s0 = '1'
 	else			exe_pc_imm_EA(9 downto 0);
@@ -245,6 +270,15 @@ M12:mux12_value<=	exe_src2_value(9 downto 0)	when exe_mux12_s0 = '1'
 M14:mux14_value<=	flags_save_value				when exe_opcode = RTI_CODE   --opcode = rti opcode	
 	else			alu_flags_out;
 
+	
+M7: mux7_value <=   mem_mux11_value 			when alu1_s = "01"
+	else		    wb_mux15_value				when alu2_s = "10"
+	else			exe_src1_value;
+	
+M8: mux8_value <=   mem_mux11_value				when alu1_s = "01"
+	else			wb_mux15_value				when alu2_s = "10"
+	else			exe_src2_value;
+	
 flag_save_enable<= '1'							when exe_opcode = INT_CODE   --opcode = interrupt 
 	else		   '0';
 	
@@ -260,9 +294,13 @@ ret <= '1' when exe_opcode = RET_CODE
 
 flags_enable <= exe_flags_enable and (not mem_ret);
 
+out_enable <= '1' when exe_opcode = OUT_CODE
+	else  '0';
+
 Flag_reg: nbit_Register generic map(4) port map(clk, rst, flags_enable, mux14_value, "0000", flags_reg_value);
 Flag_save: nbit_Register generic map(4) port map(clk, rst, flag_save_enable, flags_reg_value, "0000", flags_save_value);	
-
+outport: nbit_Register generic map(16) port map(clk, rst, out_enable, exe_src1_value, x"0000", out_port);
+inport: nbit_Register generic map(16) port map(clk, rst, '1', in_port, x"0000", inport_value);
 
 
 
@@ -270,8 +308,8 @@ Flag_save: nbit_Register generic map(4) port map(clk, rst, flag_save_enable, fla
 -------------------------------------------------------MEmory stage-------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------------------
 	
-DM: DataMemory port map(clk,mem_mem_write ,mem_mem_read, rst, mem_mux12_value, mem_mux10_value, data_mem_out);
-M15: mux15_value <= data_mem_out when mux15_s0 = '1'
+DM: DataMemory port map(clk,mem_mem_write ,mem_mem_read, rst, mem_mux12_value, mem_mux10_value, data_mem_out, mem_of_0, mem_of_1);
+M15: mux15_value <= data_mem_out when em_buffer_value(52) = '1'
 	else			mem_mux11_value;
 	
 ----------------------------------------------------------------------------------------------------------------------------
@@ -286,17 +324,17 @@ M15: mux15_value <= data_mem_out when mux15_s0 = '1'
 
 J <= B or mem_c;
 mux16_value <= data_mem_out(9 downto 0) when mem_c = '1'
-	else	exe_src1_value(9 downto 0);
+	else	mux7_value(9 downto 0);
 
 bufferFD: nbit_Register generic map(26) port map(clk, fd_buffer_rst, '1', fd_buffer_input, (others => '0'), fd_buffer_value);   --fetch/decode buffer
 bufferDE: nbit_Register generic map(75) port map(clk, de_buffer_rst, '1', de_buffer_input, (others => '0'), de_buffer_value);	 --decode/execute buffer
-bufferEM: nbit_Register generic map(52) port map(clk, em_buffer_rst, '1', em_buffer_input, (others => '0'), em_buffer_value);   --execute/memory buffer
+bufferEM: nbit_Register generic map(53) port map(clk, em_buffer_rst, '1', em_buffer_input, (others => '0'), em_buffer_value);   --execute/memory buffer
 bufferMW: nbit_Register generic map(20) port map(clk, mw_buffer_rst, '1', mw_buffer_input, (others => '0'), mw_buffer_value);   --memory/write back
 
 --inputs to buffers
 fd_buffer_input <= pc_value & mux3_value;
 de_buffer_input <= dec_opcode & src1_value & src2_value & mux6_value & dec_dst_num & dec_src1_num & dec_src2_num & src1_exist & src2_exist & mem_read & mem_write & reg_write & flags_enable_cu & mux9_s0 & mux10_s & mux11_s & mux12_s0 & mux15_s0;
-em_buffer_input <= ret & C & mux10_value & mux11_value & mux12_value & exe_reg_write & exe_dst_num & exe_src1_exist & exe_src2_exist & exe_mem_read & exe_mem_write;
+em_buffer_input <= de_buffer_value(0) & ret & C & mux10_value & mux11_value & mux12_value & exe_reg_write & exe_dst_num & exe_src1_exist & exe_src2_exist & exe_mem_read & exe_mem_write;
 mw_buffer_input <= mem_reg_write & mem_dst_num & mux15_value;
 
 

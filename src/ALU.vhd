@@ -24,24 +24,24 @@ end ALU;
 
 Architecture ALU_ARC of ALU is
 
-CONSTANT ADD_CODE :std_logic_vector(4 downto 0)  := "00001";
-CONSTANT SUB_CODE :std_logic_vector(4 downto 0)  := "00010";
-CONSTANT AND_CODE :std_logic_vector(4 downto 0)  := "00011";
-CONSTANT OR_CODE :std_logic_vector(4 downto 0)  := "00100";
-CONSTANT RLC_CODE :std_logic_vector(4 downto 0)  := "00101";
-CONSTANT RRC_CODE :std_logic_vector(4 downto 0)  := "00110";
-CONSTANT SHL_CODE :std_logic_vector(4 downto 0)  := "00111";
-CONSTANT SHR_CODE :std_logic_vector(4 downto 0)  := "01010";
-CONSTANT SETC_CODE :std_logic_vector(4 downto 0)  := "01011";
-CONSTANT CLRC_CODE :std_logic_vector(4 downto 0)  := "01100";
-CONSTANT NOT_CODE :std_logic_vector(4 downto 0)  := "01101";
-CONSTANT NEG_CODE :std_logic_vector(4 downto 0)  := "01110";
-CONSTANT INC_CODE :std_logic_vector(4 downto 0)  := "01111";
-CONSTANT DEC_CODE :std_logic_vector(4 downto 0)  := "10000";
-CONSTANT CALL_CODE :std_logic_vector(4 downto 0)  := "10001";
-CONSTANT JZ_CODE :std_logic_vector(4 downto 0)  := "10010";
-CONSTANT JC_CODE :std_logic_vector(4 downto 0)  := "10011";
-CONSTANT JN_CODE :std_logic_vector(4 downto 0)  := "10100";
+CONSTANT ADD_CODE :std_logic_vector(4 downto 0)  := "00100";
+CONSTANT SUB_CODE :std_logic_vector(4 downto 0)  := "00101";
+CONSTANT AND_CODE :std_logic_vector(4 downto 0)  := "00110";
+CONSTANT OR_CODE :std_logic_vector(4 downto 0)  := "00111";
+CONSTANT RLC_CODE :std_logic_vector(4 downto 0)  := "00010";
+CONSTANT RRC_CODE :std_logic_vector(4 downto 0)  := "00011";
+CONSTANT SHL_CODE :std_logic_vector(4 downto 0)  := "01000";
+CONSTANT SHR_CODE :std_logic_vector(4 downto 0)  := "01001";
+CONSTANT SETC_CODE :std_logic_vector(4 downto 0)  := "01010";
+CONSTANT CLRC_CODE :std_logic_vector(4 downto 0)  := "01011";
+CONSTANT NOT_CODE :std_logic_vector(4 downto 0)  := "10000";
+CONSTANT NEG_CODE :std_logic_vector(4 downto 0)  := "10001";
+CONSTANT INC_CODE :std_logic_vector(4 downto 0)  := "10010";
+CONSTANT DEC_CODE :std_logic_vector(4 downto 0)  := "10011";
+CONSTANT CALL_CODE :std_logic_vector(4 downto 0)  := "11000";
+CONSTANT JZ_CODE :std_logic_vector(4 downto 0)  := "10100";
+CONSTANT JC_CODE :std_logic_vector(4 downto 0)  := "10110";
+CONSTANT JN_CODE :std_logic_vector(4 downto 0)  := "10101";
 ------------------------------------------------------------------------
 -- true till here
 

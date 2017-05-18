@@ -75,8 +75,8 @@ R5: nbit_register port map (inverse_Clk,rst,registersenables(5),data_in,reset_va
 
 --stack pointer
 incrementer: nbit_adder port map(sp_Q , x"0000", '1' , sp_plus_one, carry1, ov_flow1);
-decrementer: nbit_adder port map(sp_Q , x"FFFE", '1' , sp_minus_one, carry2, ov_flow2);
-SP: nbit_register port map (inverse_Clk,rst,sp_enable, sp_data,x"03FF",sp_Q);  --sp
+decrementer: nbit_adder port map(sp_Q , x"FFFF", '0' , sp_minus_one, carry2, ov_flow2);
+SP: nbit_register port map (clk, rst,sp_enable, sp_data,x"03FF",sp_Q);  --sp
 
 sp_data <= sp_plus_one when sp_selector = '1'
 else sp_minus_one;
